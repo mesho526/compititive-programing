@@ -1,0 +1,10 @@
+class Solution:
+    def sortSentence(self, s: str) -> str:
+        cache = {}
+        for word in s.split():
+            cache[word[-1]] = word[:-1]
+            
+        res = cache["1"]
+        for i in range(2, len(cache) + 1):
+            res += " " + cache[str(i)]
+        return res
