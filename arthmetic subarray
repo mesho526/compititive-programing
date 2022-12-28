@@ -1,0 +1,13 @@
+class Solution:
+    def checkArithmeticSubarrays(self, nums: List[int], l: List[int], r: List[int]) -> List[bool]:
+        ans = []
+        for idx, start in enumerate(l):
+            end = r[idx]
+            total_num = end - start + 1
+            sarray = sorted(nums[start:end+1])
+            diffs = { abs(sarray[i] - sarray[i-1]) for i in range(1, len(sarray)) }
+            if len(diffs) == 1:
+                ans.append(True)
+            else:
+                ans.append(False)
+        return ans 
