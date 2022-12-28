@@ -1,0 +1,13 @@
+class Solution:
+    def maxSumTwoNoOverlap(self, A: List[int], L: int, M: int) -> int:
+        def solve(l,m):
+            left = p = sum(A[:l]) 
+            c = sum(A[l:l+m])
+            ans = left + c
+            for i in range(l, len(A) - m):
+                p += A[i] - A[i-l]
+                c += A[i+m] - A[i]
+                left = max(left, p)
+                ans = max(c + left, ans) 
+            return ans 
+        return max(solve(L,M), solve(M, L))
