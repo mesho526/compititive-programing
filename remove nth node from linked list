@@ -1,0 +1,15 @@
+class Solution(object):
+    def removeNthFromEnd(self, head, n):        
+        lead, lag = head, head
+        
+        cnt = 1
+        while lead.next is not None:
+            lead, cnt = lead.next, cnt + 1
+            if cnt - n > 1:
+                lag = lag.next
+                
+        if cnt-n == 0:
+            return head.next
+        else:
+            lag.next = lag.next.next
+            return head
